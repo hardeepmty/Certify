@@ -23,21 +23,19 @@ function CertificateForm() {
         event.preventDefault();
 
         try {
-            // Make a POST request to the backend server
             const response = await axios.post('http://localhost:3001/api/certificate', formData, {
-                responseType: 'arraybuffer' // Set the response type to arraybuffer to handle the PDF file
+                responseType: 'arraybuffer' 
             });
 
-            // Create a blob from the PDF bytes
+            // creating a blob so that it can handle the binary data that can be used to generate a link 
             const blob = new Blob([response.data], { type: 'application/pdf' });
 
-            // Create a download link for the blob
+            // this creates a download link of the format <a href=....
             const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = `${formData.name}_certificate.pdf`;
-            downloadLink.click(); // Trigger the download
+            downloadLink.click(); // something like onClick Function...
 
-            // Log success message (optional)
             console.log('Certificate downloaded successfully');
         } catch (error) {
             console.error('Error generating certificate:', error);
