@@ -23,7 +23,7 @@ function CertificateForm() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3001/api/certificate', formData, {
+            const response = await axios.post('https://certify-ibwg.onrender.com/api/certificate', formData, {
                 responseType: 'arraybuffer' 
             });
 
