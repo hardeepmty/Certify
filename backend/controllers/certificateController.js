@@ -11,20 +11,49 @@ async function generateCertificate(name, course, date) {
     fs.mkdirSync(pdfDirectory);
    }
 
-    // Create a PDF document and add a page
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([600, 400]);
     const { width, height } = page.getSize();
 
-    // Add text to the page
-    page.drawText('Certificate of Completion', { x: 200, y: height - 100, size: 24 });
-    page.drawText('This certifies that', { x: 220, y: height - 150, size: 16 });
-    page.drawText(name, { x: 250, y: height - 200, size: 20 });
-    page.drawText('has completed the course', { x: 220, y: height - 250, size: 16 });
-    page.drawText(course, { x: 250, y: height - 300, size: 20 });
-    page.drawText(`on ${date.toLocaleDateString()}`, { x: 220, y: height - 350, size: 16 });
+    page.drawText('Certificate of Completion', {
+      x: width / 2 - 120, 
+      y: height - 100, 
+      size: 24,
+  });
+  
+  page.drawText('This certifies that', {
+      x: 50, 
+      y: height - 150, 
+      size: 16,
+  });
+  
 
-    // Save the PDF document and return its bytes
+  page.drawText(name, {
+      x: 50, 
+      y: height - 190, 
+      size: 20,
+  });
+  
+  page.drawText('has completed the course', {
+      x: 50, 
+      y: height - 230, 
+      size: 16,
+  });
+  
+
+  page.drawText(course, {
+      x: 50, 
+      y: height - 270, 
+      size: 20,
+  });
+  
+
+  page.drawText(`on ${date.toLocaleDateString()}`, {
+      x: 50, 
+      y: height - 310, 
+      size: 16,
+  });
+
     const pdfBytes = await pdfDoc.save();
     return pdfBytes;
 }
