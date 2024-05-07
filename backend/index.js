@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { PDFDocument } = require('pdf-lib');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors'); 
 
 // Create an Express app
 const app = express();
@@ -15,10 +15,7 @@ app.use(cors()); // Use cors middleware with default settings
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mernCertificateGenerator', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect('mongodb+srv://mohanty4raj:lpuZjUPEGmGlBPFy@cluster0.fiaafld.mongodb.net/Certify?retryWrites=true&w=majority&appName=Cluster0');
 
 // Define a certificate schema and model
 const certificateSchema = new mongoose.Schema({
@@ -52,25 +49,46 @@ async function generateCertificate(name, course, date) {
 
 // Route to handle certificate generation
 app.post('/api/certificate', async (req, res) => {
-    const { name, course, date, email } = req.body;
+  const { name, course, date, email } = req.body;
 
-    // Generate the PDF certificate
-    const pdfBytes = await generateCertificate(name, course, new Date(date));
+  try {
 
-    // Save the PDF file on the server
-    const pdfPath = path.join(__dirname, `${name}_certificate.pdf`);
-    fs.writeFileSync(pdfPath, pdfBytes);
+      const pdfBytes = await generateCertificate(name, course, new Date(date));
 
-    // Send the certificate to the user for download
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=${name}_certificate.pdf`);
-    
-    // Send the PDF bytes
-    res.send(Buffer.from(pdfBytes));
-    
-    // Remove the locally saved PDF file after sending the response
-    fs.unlinkSync(pdfPath);
+
+      const pdfFilename = `${name}_certificate.pdf`;
+      const pdfPath = path.join(__dirname, pdfFilename);
+      fs.writeFileSync(pdfPath, pdfBytes);
+
+      const pdfLink = `${req.protocol}://${req.get('host')}/${pdfFilename}`;
+
+
+      const certificate = new Certificate({
+          name,
+          course,
+          date,
+          email,
+          pdfLink,
+      });
+
+      // Save the certificate document to MongoDB
+      await certificate.save();
+
+      // Send the PDF link back in the response
+      res.json({
+          message: 'Certificate generated and saved successfully.',
+          pdfLink,
+      });
+
+      // Optionally: You can remove the locally saved PDF file if you do not need it anymore
+      // fs.unlinkSync(pdfPath);
+  } catch (error) {
+      // Handle any errors
+      console.error('Error generating certificate:', error);
+      res.status(500).json({ message: 'Error generating certificate' });
+  }
 });
+
 
 // Start the server
 const PORT = 3001; // Customize the port
