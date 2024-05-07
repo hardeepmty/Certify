@@ -7,11 +7,9 @@ function App() {
         <div style={{ textAlign: 'center' }}>
             <h1>Certificate Generator</h1>
             <div style={{ marginBottom: '30px' }}>
-                {/* Certificate form for generating individual certificates */}
                 <CertificateForm />
             </div>
             <div>
-                {/* CSV Upload form for bulk certificate generation */}
                 <CsvUploadForm />
             </div>
         </div>
