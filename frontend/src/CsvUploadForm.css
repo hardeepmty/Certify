@@ -1,15 +1,17 @@
-/* CertificateForm.css */
+/* CsvUploadForm.css */
 
-.certificate-form-container {
+.csv-upload-form {
   text-align: center;
   padding: 20px;
+  border: 2px dotted black;
   margin: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center children elements horizontally */
+  justify-content: center; /* Center children elements vertically */
 }
 
-.certificate-form-title {
+.csv-upload-title {
   font-family: 'Montserrat', sans-serif;
   color: #17252a;
   font-weight: 800;
@@ -17,21 +19,15 @@
   margin-bottom: 10px;
 }
 
-.certificate-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.certificate-form-label {
+.csv-upload-description {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
   color: #17252a;
+  font-weight: 500;
   font-size: 20px;
-  margin: 10px 0;
+  margin-bottom: 20px;
 }
 
-.certificate-form-input {
+.csv-upload-input {
   font-family: 'Montserrat', sans-serif;
   padding: 10px;
   margin-bottom: 20px;
@@ -41,7 +37,7 @@
   width: 500px;
 }
 
-.certificate-form-button {
+.csv-upload-button {
   font-family: 'Montserrat', sans-serif;
   padding: 15px 20px;
   font-size: 18px;
@@ -54,7 +50,7 @@
   width: 500px;
 }
 
-.certificate-form-status {
+.csv-upload-status {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: #17252a;
@@ -63,25 +59,22 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .certificate-form-container {
-      border: none;
-  }
-  .certificate-form-title {
+  .csv-upload-title {
       font-size: 28px;
   }
 
-  .certificate-form-label {
+  .csv-upload-description {
       font-size: 16px;
   }
 
-  .certificate-form-button {
+  .csv-upload-button {
       padding: 10px 15px;
       font-size: 16px;
-      width: 200px;
+      width: 300px;
   }
 
-  .certificate-form-input {
+  .csv-upload-input {
       padding: 8px;
-      width: 200px;
+      width: 300px;
   }
 }

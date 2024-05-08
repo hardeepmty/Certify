@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './CsvUploadForm.css'; // Import a CSS file for styling
 
 function CsvUploadForm() {
     const [csvFile, setCsvFile] = useState(null);
@@ -42,12 +43,12 @@ function CsvUploadForm() {
     };
 
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h2>Bulk Certificate Generation</h2>
-            <p>Add a CSV file having name,course,email and date to generate certificates in bulk</p>
-            <input type="file" accept=".csv" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload CSV and Generate Certificates</button>
-            <p>{uploadStatus}</p>
+        <div className="csv-upload-form">
+            <h2 className="csv-upload-title">Bulk Certificate Generation</h2>
+            <p className="csv-upload-description">Add a CSV file containing names, courses, emails, and dates to generate certificates in bulk.</p>
+            <input type="file" accept=".csv" onChange={handleFileChange} className="csv-upload-input" />
+            <button onClick={handleUpload} className="csv-upload-button">Upload CSV and Generate Certificates</button>
+            <p className="csv-upload-status">{uploadStatus}</p>
         </div>
     );
 }

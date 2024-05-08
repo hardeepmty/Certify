@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './CertificateForm.css'; // Importing the CSS file for styling
 
-
 function CertificateForm() {
     const [formData, setFormData] = useState({
         name: '',
@@ -11,7 +10,6 @@ function CertificateForm() {
         email: ''
     });
 
-    // Handle input changes
     function handleChange(event) {
         const { name, value } = event.target;
         setFormData({
@@ -20,23 +18,22 @@ function CertificateForm() {
         });
     }
 
-    // Handle form submission
     async function handleSubmit(event) {
         event.preventDefault();
 
         try {
             const response = await axios.post('https://certify-ibwg.onrender.com/api/certificate', formData, {
-                responseType: 'arraybuffer' 
+                responseType: 'arraybuffer'
             });
 
-            // creating a blob so that it can handle the binary data that can be used to generate a link 
+            // Creating a blob to handle binary data for generating the download link
             const blob = new Blob([response.data], { type: 'application/pdf' });
 
-            // this creates a download link of the format <a href=....
+            // Create a download link for the certificate
             const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = `${formData.name}_certificate.pdf`;
-            downloadLink.click(); // something like onClick Function...
+            downloadLink.click();
 
             console.log('Certificate downloaded successfully');
         } catch (error) {
@@ -45,12 +42,13 @@ function CertificateForm() {
     }
 
     return (
-        <div>
-            <h2>Generate Certificate</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="certificate-form-container">
+            <h2 className="certificate-form-title">Generate Certificate</h2>
+            <form className="certificate-form" onSubmit={handleSubmit}>
                 <div>
-                    <label>Name:</label>
+                    <label className="certificate-form-label">Name:</label>
                     <input
+                        className="certificate-form-input"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -59,8 +57,9 @@ function CertificateForm() {
                     />
                 </div>
                 <div>
-                    <label>Course:</label>
+                    <label className="certificate-form-label">Course:</label>
                     <input
+                        className="certificate-form-input"
                         type="text"
                         name="course"
                         value={formData.course}
@@ -69,8 +68,9 @@ function CertificateForm() {
                     />
                 </div>
                 <div>
-                    <label>Date:</label>
+                    <label className="certificate-form-label">Date:</label>
                     <input
+                        className="certificate-form-input"
                         type="date"
                         name="date"
                         value={formData.date}
@@ -79,8 +79,9 @@ function CertificateForm() {
                     />
                 </div>
                 <div>
-                    <label>Email:</label>
+                    <label className="certificate-form-label">Email:</label>
                     <input
+                        className="certificate-form-input"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -88,7 +89,7 @@ function CertificateForm() {
                         required
                     />
                 </div>
-                <button type="submit">Generate Certificate</button>
+                <button type="submit" className="certificate-form-button">Generate Certificate</button>
             </form>
         </div>
     );

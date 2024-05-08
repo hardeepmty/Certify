@@ -15,7 +15,7 @@ const Feature = () => {
       </div>
 
       <div className="feature-image-container">
-        <img src="/images/certifcate.jpg" alt="Certificate" className="feature-image" />
+        {/* <img src="/images/certifcate.jpg" alt="Certificate" className="feature-image" /> */}
       </div>
     </div>
   );
