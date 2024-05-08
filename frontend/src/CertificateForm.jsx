@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './CertificateForm.css'; // Importing the CSS file for styling
+
 
 function CertificateForm() {
     const [formData, setFormData] = useState({

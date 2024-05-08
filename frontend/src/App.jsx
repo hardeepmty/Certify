@@ -1,17 +1,20 @@
 import React from 'react';
 import CertificateForm from './CertificateForm';
 import CsvUploadForm from './CsvUploadForm';
+import './App.css'; // Importing the CSS file for styling
 
 function App() {
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h1>Certificate Generator</h1>
-            <div style={{ marginBottom: '30px' }}>
+        <div>
+            <h1 style={{marginTop:"-100px"}}>Certificate Generator</h1>
+        <div className="app-container" style={{display:"flex"}}>
+            <div className="form-container">
                 <CertificateForm />
             </div>
-            <div>
+            <div className="form-container">
                 <CsvUploadForm />
             </div>
+        </div>
         </div>
     );
 }
