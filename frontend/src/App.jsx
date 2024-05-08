@@ -7,11 +7,9 @@ import CertificateForm from './CertificateForm';
 import './App.css';
 
 function App() {
-    // Create references for each component
     const csvUploadRef = useRef(null);
     const certificateFormRef = useRef(null);
 
-    // Handle button clicks
     const handleCsvUploadClick = () => {
         csvUploadRef.current.scrollIntoView({ behavior: 'smooth' });
     };
@@ -98,12 +96,10 @@ function App() {
 
             <Feature />
 
-            {/* CSV Upload Form */}
             <div ref={csvUploadRef}>
                 <CsvUploadForm />
             </div>
 
-            {/* Certificate Form */}
             <div ref={certificateFormRef}>
                 <CertificateForm />
             </div>

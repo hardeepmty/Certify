@@ -1,5 +1,3 @@
-/* CsvUploadForm.css */
-
 .csv-upload-form {
   text-align: center;
   padding: 20px;
@@ -7,8 +5,8 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center children elements horizontally */
-  justify-content: center; /* Center children elements vertically */
+  align-items: center; 
+  justify-content: center; 
 }
 
 .csv-upload-title {
@@ -57,7 +55,6 @@
   margin-top: 10px;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .csv-upload-title {
       font-size: 28px;

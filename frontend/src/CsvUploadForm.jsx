@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './CsvUploadForm.css'; // Import a CSS file for styling
+import './CsvUploadForm.css'; 
 
 function CsvUploadForm() {
     const [csvFile, setCsvFile] = useState(null);

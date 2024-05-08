@@ -1,8 +1,6 @@
-/* Footer.css */
-
 .footer-container {
-  background-color: #17252a; /* Dark background color */
-  color: #def2f1; /* Light text color */
+  background-color: #17252a; 
+  color: #def2f1; 
   padding: 20px;
   text-align: center;
 }
@@ -37,7 +35,6 @@
   height: 24px;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .footer-content {
       flex-direction: column;

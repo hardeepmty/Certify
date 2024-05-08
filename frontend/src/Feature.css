@@ -1,4 +1,3 @@
-/* Feature.css */
 .feature-container {
   display: flex;
   background-color: #2b7a78;
@@ -9,7 +8,7 @@
 }
 
 .feature-content {
-  max-width: 100%; /* Adjust the max-width as needed */
+  max-width: 100%; 
 }
 
 .feature-title {
@@ -31,11 +30,10 @@
 }
 
 .feature-image {
-  width: 500px; /* Keep the image width consistent at 500px */
-  max-width: 100%; /* Make sure the image does not exceed its container's width */
+  width: 500px; 
+  max-width: 100%; 
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 768px) {
   .feature-container {
     flex-direction: column;
@@ -46,10 +44,9 @@
     margin: 10px 0;
   }
 
-  /* Keep the image width at auto for smaller screens */
   .feature-image {
     width: auto;
-    max-width: 100%; /* Keep the image responsive */
+    max-width: 100%; 
   }
 
   .feature-description {

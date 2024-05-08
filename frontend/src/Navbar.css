@@ -1,24 +1,20 @@
-/* Navbar.css */
-/* Reset padding and margin */
 body, html {
   margin: 0;
   padding: 0;
   background-color: #3aafa9;
 }
 
-/* General styling for the navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   color: rgb(27, 25, 25);
-  padding: 5px 5px; /* Padding around the navbar */
+  padding: 5px 5px; 
   background-color: #3aafa9;
 
 }
 
-/* Left section styling */
 .navbar-left {
   display: flex;
   align-items: center;
@@ -26,7 +22,7 @@ body, html {
 }
 
 .navbar-logo {
-  height: 40px; /* Adjust logo size as needed */
+  height: 40px; 
 }
 
 .navbar-title {
@@ -34,24 +30,22 @@ body, html {
   font-weight: bold;
 }
 
-/* Hamburger menu button styling */
 .navbar-toggle {
-  display: none; /* Initially hidden */
+  display: none; 
   flex-direction: column;
   cursor: pointer;
 }
 
 .navbar-toggle-bar {
-  width: 30px; /* Width of the hamburger bars */
-  height: 4px; /* Height of the bars */
-  background-color: rgb(27, 25, 25); /* Bar color */
-  margin: 3px 0; /* Margin between bars */
+  width: 30px; 
+  height: 4px; 
+  background-color: rgb(27, 25, 25); 
+  margin: 3px 0; 
 }
 
-/* Right section styling */
 .navbar-right {
   display: flex;
-  gap: 15px; /* Adjust gap between links as needed */
+  gap: 15px; 
   margin-right: 35px;
 }
 
@@ -69,9 +63,7 @@ body, html {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive styling for smaller screens */
 @media (max-width: 768px) {
-  /* Show hamburger menu button on smaller screens */
   .navbar-toggle {
     display: flex;
     height: 50px;
@@ -79,22 +71,20 @@ body, html {
     margin-top: 15px;
   }
 
-  /* Hide the navigation links by default */
   .navbar-right {
     display: none;
   }
 
-  /* Show the navigation links when the toggle is active */
   .navbar-right.visible {
     display: flex;
-    flex-direction: column; /* Stack links vertically */
-    gap: 10px; /* Adjust gap between links as needed */
-    position: absolute; /* Position the links absolutely */
-    right: 20px; /* Align links to the right */
-    top: 60px; /* Position links below the navbar */
-    background-color: white; /* Background color for the links */
-    padding: 10px; /* Padding around the links */
-    border-radius: 8px; /* Optional: add a border radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for the dropdown */
+    flex-direction: column; 
+    gap: 10px;
+    position: absolute; 
+    right: 20px;
+    top: 60px; 
+    background-color: white; 
+    padding: 10px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 }

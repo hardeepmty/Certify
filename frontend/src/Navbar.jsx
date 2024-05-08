@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import './Navbar.css'; // Import your CSS file for styling
+import './Navbar.css'; 
 
 const Navbar = () => {
-    // State to track the visibility of the mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Function to toggle the menu visibility
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
         <nav className="navbar">
-            {/* Left section with the title and logo */}
             <div className="navbar-left">
                 <img
                     src="/images/certify.png"
@@ -22,7 +19,6 @@ const Navbar = () => {
                 <h1 className="navbar-title" style={{fontFamily:"Montserrat"}}>Certify</h1>
             </div>
 
-            {/* Hamburger menu for mobile screens */}
             <div
                 className="navbar-toggle"
                 onClick={toggleMenu}
@@ -33,7 +29,6 @@ const Navbar = () => {
                 <span className="navbar-toggle-bar"></span>
             </div>
 
-            {/* Right section with navigation links */}
             <div className={`navbar-right ${isMenuOpen ? 'visible' : ''}`}>
                 <a href="/about" className="navbar-link" style={{fontFamily:"Montserrat" ,fontSize:"25px", fontWeight:"500"}}>About</a>
                 <a href="/product" className="navbar-link" style={{fontFamily:"Montserrat",fontSize:"25px", fontWeight:"500"}}>Product</a>
