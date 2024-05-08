@@ -1,0 +1,61 @@
+/* Feature.css */
+.feature-container {
+  display: flex;
+  background-color: #2b7a78;
+  align-items: center;
+  margin-top: 60px;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.feature-content {
+  max-width: 60%; /* Adjust the max-width as needed */
+}
+
+.feature-title {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 80px;
+  margin-right: 15px;
+}
+
+.feature-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+  margin-left: 80px;
+  margin-right: 35px;
+  line-height: 1.6;
+}
+
+.feature-image-container {
+  margin-right: 100px;
+}
+
+.feature-image {
+  width: 500px;
+  max-width: 100%; /* Make sure the image is responsive */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .feature-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .feature-content, .feature-image-container {
+    margin: 10px 0;
+  }
+
+  .feature-image {
+    width: 300px; /* Adjust the image size for smaller screens */
+  }
+
+  .feature-description {
+    font-size: 18px;
+    margin: 10px 20px;
+  }
+
+  .feature-title{
+    margin-left: 10px;
+  }
+}

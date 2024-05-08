@@ -35,9 +35,10 @@ const Navbar = () => {
 
             {/* Right section with navigation links */}
             <div className={`navbar-right ${isMenuOpen ? 'visible' : ''}`}>
-                <a href="/about" className="navbar-link" style={{fontFamily:"Montserrat"}}>About</a>
-                <a href="/product" className="navbar-link" style={{fontFamily:"Montserrat"}}>Product</a>
-                <a href="/help" className="navbar-link" style={{fontFamily:"Montserrat"}}>Help</a>
+                <a href="/about" className="navbar-link" style={{fontFamily:"Montserrat" ,fontSize:"25px", fontWeight:"500"}}>About</a>
+                <a href="/product" className="navbar-link" style={{fontFamily:"Montserrat",fontSize:"25px", fontWeight:"500"}}>Product</a>
+                <a href="/help" className="navbar-link" style={{fontFamily:"Montserrat",fontSize:"25px", fontWeight:"500"}}>Help</a>
+                <a href="/help" className="navbar-link" style={{fontFamily:"Montserrat",fontSize:"25px", fontWeight:"500"}}>Resources</a>
             </div>
         </nav>
     );

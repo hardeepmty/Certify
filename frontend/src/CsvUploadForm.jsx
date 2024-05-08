@@ -42,7 +42,7 @@ function CsvUploadForm() {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginLeft:"30px" }}>
+        <div style={{ textAlign: 'center' }}>
             <h2>Bulk Certificate Generation</h2>
             <p>Add a CSV file having name,course,email and date to generate certificates in bulk</p>
             <input type="file" accept=".csv" onChange={handleFileChange} />
