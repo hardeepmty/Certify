@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { PDFDocument, StandardFonts } = require('pdf-lib');
+const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const multer = require('multer');
 const csvParser = require('csv-parser');
 const AdmZip = require('adm-zip');
@@ -10,58 +10,84 @@ const upload = multer({
     storage: multer.memoryStorage(),
 });
 
+
 async function generateCertificate(name, course, date) {
+    
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([600, 400]);
     const { width, height } = page.getSize();
 
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    page.drawText('Certificate of Completion', {
-        x: width / 2 - 120,
-        y: height - 100,
-        size: 24,
-        font,
-    });
-    
-    page.drawText('This certifies that', {
-        x: 50,
-        y: height - 150,
-        size: 16,
-        font,
-    });
+    const blueColor = rgb(0, 0, 1);
 
-    page.drawText(name, {
-        x: 50,
-        y: height - 190,
-        size: 20,
-        font,
+    const borderWidth = 4; 
+    const x = borderWidth / 2;
+    const y = borderWidth / 2;
+    const rectWidth = width - borderWidth;
+    const rectHeight = height - borderWidth;
+
+    page.drawRectangle({
+        x,
+        y,
+        width: rectWidth,
+        height: rectHeight,
+        borderColor: blueColor,
+        borderWidth: borderWidth,
     });
 
-    page.drawText('has completed the course', {
-        x: 50,
-        y: height - 230,
-        size: 16,
-        font,
+    const imagePath = './design.png';
+    const imageData = fs.readFileSync(imagePath);
+    const image = await pdfDoc.embedPng(imageData);
+
+    page.drawImage(image, {
+        x: 0,
+        y: 0,
+        width: width,
+        height: height,
     });
 
-    page.drawText(course, {
-        x: 50,
-        y: height - 270,
-        size: 20,
-        font,
-    });
+  
+    function drawCenteredText(text, font, size, y) {
+        const textWidth = font.widthOfTextAtSize(text, size);
+        const x = (width - textWidth) / 2;
+        page.drawText(text, {
+            x,
+            y,
+            size,
+            font,
+        });
+    }
 
-    page.drawText(`on ${date.toLocaleDateString()}`, {
-        x: 50,
-        y: height - 310,
-        size: 16,
-        font,
-    });
+    // Define text style and positions
+    const lineHeight = 40; // Vertical spacing between lines
+    let currentY = height - 100;
 
+    // Draw text on the certificate
+    drawCenteredText('Certificate of Completion', fontBold, 24, currentY);
+    currentY -= lineHeight;
+
+    drawCenteredText('This certifies that', fontRegular, 16, currentY);
+    currentY -= lineHeight;
+
+    drawCenteredText(name, fontBold, 20, currentY);
+    currentY -= lineHeight;
+
+    drawCenteredText('has completed the course', fontRegular, 16, currentY);
+    currentY -= lineHeight;
+
+    drawCenteredText(course, fontBold, 20, currentY);
+    currentY -= lineHeight;
+
+    drawCenteredText(`on ${date.toLocaleDateString()}`, fontRegular, 16, currentY);
+
+    // Save the PDF and return the bytes
     const pdfBytes = await pdfDoc.save();
     return pdfBytes;
 }
+
+
 
 async function generateCertificateController(req, res) {
     const { name, course, date, email } = req.body;
